@@ -34,7 +34,7 @@ namespace Vet_website.Controllers
             }
 
             var owner = await _context.Owner
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (owner == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Vet_website.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Name,Address,Phone,Email")] Owner owner)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address,Phone,Email")] Owner owner)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace Vet_website.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.Owner.FindAsync(id);
+            var owner = await _context.Owner.Include(o=>o.Pets).FirstOrDefaultAsync(o=>o.Id==id);
             if (owner == null)
             {
                 return NotFound();
@@ -86,9 +86,9 @@ namespace Vet_website.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Address,Phone,Email")] Owner owner)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,Phone,Email")] Owner owner)
         {
-            if (id != owner.id)
+            if (id != owner.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Vet_website.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OwnerExists(owner.id))
+                    if (!OwnerExists(owner.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Vet_website.Controllers
             }
 
             var owner = await _context.Owner
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (owner == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace Vet_website.Controllers
 
         private bool OwnerExists(int id)
         {
-            return _context.Owner.Any(e => e.id == id);
+            return _context.Owner.Any(e => e.Id == id);
         }
     }
 }

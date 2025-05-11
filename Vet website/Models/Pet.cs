@@ -3,11 +3,11 @@
     public class Pet
     {
         public int Id { get; set; }
-        public string Name { get; set; } = null;
-        public string Species { get; set; } = null;
-        public DateTime DateOfBirth { get; set; }
+        public string? Name { get; set; }
+        public string? Species { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
-        public ICollection<Procedure> Procedures { get; set; } = null;
+        public ICollection<Procedure>? Procedures { get; set; }
 
         public Pet()
         {

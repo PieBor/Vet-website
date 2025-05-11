@@ -12,5 +12,9 @@ namespace Vet_website.Data
         }
         public DbSet<Vet_website.Models.Owner> Owner { get; set; } = default!;
         public DbSet<Vet_website.Models.Pet> Pet { get; set; } = default!;
+
+        public DbSet<Vet_website.Models.Procedure> Procedure { get; set; } = default!;
+
+
     }
 }

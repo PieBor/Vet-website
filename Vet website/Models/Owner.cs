@@ -2,12 +2,12 @@
 {
     public class Owner
     {
-        public int id { get; set; }
-        public string Name { get; set; } = null;
-        public string Address { get; set; } = null;
-        public string Phone { get; set; } = null;
-        public string Email { get; set; } = null;
-        public ICollection<Pet> Pets { get; set; } = null;
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Address { get; set; }
+        public string? Phone { get; set; }
+        public string? Email { get; set; }
+        public ICollection<Pet>? Pets { get; set; }
         public Owner()
         {
 
